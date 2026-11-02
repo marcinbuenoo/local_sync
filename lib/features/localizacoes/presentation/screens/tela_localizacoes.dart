@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../theme/tema_aplicativo.dart';
 import '../../data/repositories/repositorio_localizacoes.dart';
 import '../../models/localizacao.dart';
 
@@ -116,6 +117,7 @@ class _TelaLocalizacoesState extends State<TelaLocalizacoes> {
       appBar: AppBar(
         title: const Text('Histórico'),
         actions: [
+          const BotaoAlternarTema(),
           IconButton(
             tooltip: 'Atualizar',
             onPressed: () => _carregar(mostrarIndicador: true),

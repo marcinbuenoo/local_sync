@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <mask id="pin">
+      <rect width="1024" height="1024" fill="#000000" />
+      <path d="M512 820C430 710 296 536 296 400C296 285 390 200 512 200C634 200 728 285 728 400C728 536 594 710 512 820Z" fill="#FFFFFF" />
+      <circle cx="512" cy="400" r="120" fill="#000000" />
+    </mask>
+  </defs>
+  <path d="M512 820C430 710 296 536 296 400C296 285 390 200 512 200C634 200 728 285 728 400C728 536 594 710 512 820Z" fill="#FFFFFF" mask="url(#pin)" />
+  <circle cx="512" cy="400" r="44" fill="#FFB74D" />
+</svg>

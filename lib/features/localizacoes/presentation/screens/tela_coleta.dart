@@ -1,13 +1,14 @@
-import 'tela_localizacoes.dart';
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../../../../theme/tema_aplicativo.dart';
 import '../../data/repositories/repositorio_localizacoes.dart';
 import '../../models/localizacao.dart';
 import '../../services/servico_localizacao.dart';
+import 'tela_localizacoes.dart';
+import 'tela_mapa.dart';
 
 class TelaColeta extends StatefulWidget {
   const TelaColeta({super.key});
@@ -112,7 +113,10 @@ class _TelaColetaState extends State<TelaColeta> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Coleta de localizações')),
+      appBar: AppBar(
+        title: const Text('Coleta de localizações'),
+        actions: const [BotaoAlternarTema()],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -134,6 +138,31 @@ class _TelaColetaState extends State<TelaColeta> {
               onPressed: _coletando ? _pararColeta : null,
               icon: const Icon(Icons.stop),
               label: const Text('Parar coleta'),
+            ),
+            const SizedBox(height: 12),
+            OutlinedButton.icon(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (context) =>
+                        TelaLocalizacoes(coletaAtiva: _coletando),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.history),
+              label: const Text('Consultar histórico'),
+            ),
+            const SizedBox(height: 12),
+            OutlinedButton.icon(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (context) => const TelaMapa(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.map_outlined),
+              label: const Text('Ver mapa'),
             ),
             const SizedBox(height: 24),
             if (_ultimaPosicao case final posicao?)
@@ -164,19 +193,6 @@ class _TelaColetaState extends State<TelaColeta> {
               label: const Text('Configurações de localização'),
             ),
           ],
-          const SizedBox(height: 12),
-          OutlinedButton.icon(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (context) =>
-                      TelaLocalizacoes(coletaAtiva: _coletando),
-                ),
-              );
-            },
-            icon: const Icon(Icons.history),
-            label: const Text('Consultar histórico'),
-          ),
         ),
       ),
     );
